@@ -92,6 +92,6 @@ FEEDS = {
     'pokemon.csv': {
         'uri': 'pokemon.csv',
         'format': 'csv',
-        'overwrite': True
+        'overwrite': True,
     }
 }
