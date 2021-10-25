@@ -6,6 +6,9 @@ name = "pypi"
 [packages]
 scrapy = "*"
 autopep8 = "*"
+jupyterlab = "*"
+scikit-learn = "*"
+pandas = "*"
 
 [dev-packages]
 
