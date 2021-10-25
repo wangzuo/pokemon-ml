@@ -35,8 +35,6 @@ class NationalSpider(scrapy.Spider):
                 yield response.follow('https://pokemondb.net' + href, callback=self.parse_item, cb_kwargs={'item': item})
 
     def parse_item(self, response, item):
-        print(item['href'])
-
         tables = response.css('.vitals-table')
         types = tables[0].css(
             'tbody tr:nth-child(2) .type-icon::text').getall()
@@ -57,7 +55,7 @@ class NationalSpider(scrapy.Spider):
         gender = tables[2].css('tr:nth-child(2) td')
         if len(gender.css('span').getall()) > 1:
             has_gender = True
-            male = gender.css('span::text').get().split()[0]
+            male = float(gender.css('span::text').get().split()[0].rstrip('%'))
         else:
             has_gender = False
             male = ''

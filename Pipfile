@@ -9,6 +9,10 @@ autopep8 = "*"
 jupyterlab = "*"
 scikit-learn = "*"
 pandas = "*"
+matplotlib = "*"
+seaborn = "*"
+yellowbrick = "*"
+numpy = "*"
 
 [dev-packages]
 
