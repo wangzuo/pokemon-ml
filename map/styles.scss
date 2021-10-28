@@ -1,0 +1,77 @@
+body {
+  margin: 0;
+}
+
+#map {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#points {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#controls {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#centroids {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.point {
+  position: absolute;
+
+  img {
+    position: relative;
+    display: block;
+    width: 50px;
+    height: 50px;
+    top: -25px;
+    left: -25px;
+  }
+}
+
+// .point:after {
+//   position: relative;
+//   display: block;
+//   content: " ";
+//   width: 4px;
+//   height: 4px;
+//   top: -2px;
+//   left: -2px;
+//   border-radius: 50%;
+//   background-color: #333;
+// }
+
+$centroid-size: 6px;
+
+.centroid {
+  position: absolute;
+}
+
+.centroid:after {
+  position: relative;
+  display: block;
+  top: -$centroid-size/2;
+  left: -$centroid-size/2;
+  content: " ";
+  width: $centroid-size;
+  height: $centroid-size;
+  border-radius: 50%;
+  background-color: red;
+}
+
+.hidden {
+  display: none !important;
+}

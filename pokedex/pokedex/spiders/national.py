@@ -23,6 +23,7 @@ class NationalSpider(scrapy.Spider):
         for i in range(len(gens)):
             gen = gens[i]
             for card in gen.css('.infocard'):
+                image = card.css('.img-sprite').attrib['data-src']
                 number = int(card.css('small::text').get()[1:])
                 name = card.css('.ent-name::text').get()
                 href = card.css('a.ent-name').attrib['href']
@@ -30,6 +31,7 @@ class NationalSpider(scrapy.Spider):
                     'generation': i+1,
                     'number': number,
                     'name': name,
+                    'image': image,
                     'href': href,
                 }
                 yield response.follow('https://pokemondb.net' + href, callback=self.parse_item, cb_kwargs={'item': item})
@@ -75,6 +77,7 @@ class NationalSpider(scrapy.Spider):
             'generation': item['generation'],
             'number': item['number'],
             'name': item['name'],
+            'image': item['image'],
             'type1': type1,
             'type2': type2,
             'height': height,
