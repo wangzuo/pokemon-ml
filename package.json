@@ -1,16 +1,19 @@
 {
   "name": "pokemon-ml",
   "version": "0.1.0",
-  "main": "index.js",
+  "scripts": {
+    "start": "parcel map/index.html",
+    "build": "parcel build map/index.html"
+  },
   "repository": "git@github.com:wangzuo/pokemon-ml.git",
   "author": "Wang Zuo <wangzuo@swiftcarrot.com> (https://swiftcarrot.com)",
   "license": "MIT",
+  "dependencies": {
+    "lodash-es": "^4.17.21"
+  },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.0.0",
     "parcel": "^2.0.0",
     "prettier": "^2.4.1"
-  },
-  "dependencies": {
-    "lodash-es": "^4.17.21"
   }
 }
