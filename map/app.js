@@ -26,9 +26,9 @@ $points.innerHTML = points
     const left = ((point[0] - xMin) / dx) * 100;
     const pokemon = pokemons[i];
 
-    return `<div class="point" data-gen="${pokemon.generation}" style="top:${top}%;left:${left}%">
+    return `<a class="point" title="${pokemon.name}" data-gen="${pokemon.generation}" style="top:${top}%;left:${left}%">
         <img width="50" height="50" src="${pokemon.image}"/>
-    </div>`;
+    </a>`;
   })
   .join("");
 
