@@ -38,17 +38,13 @@ class NationalSpider(scrapy.Spider):
 
     def parse_item(self, response, item):
         tables = response.css('.vitals-table')
-        types = tables[0].css(
-            'tbody tr:nth-child(2) .type-icon::text').getall()
+        types = tables[0].css('tbody tr:nth-child(2) .type-icon::text').getall()
         type1 = types[0]
         type2 = types[1] if len(types) > 1 else ''
-        height = float(tables[0].css(
-            'tbody tr:nth-child(4) td::text').get().split()[0])
-        weight = float(tables[0].css(
-            'tbody tr:nth-child(5) td::text').get().split()[0])
+        height = float(tables[0].css('tbody tr:nth-child(4) td::text').get().split()[0])
+        weight = float(tables[0].css('tbody tr:nth-child(5) td::text').get().split()[0])
 
-        catch_rate = int(tables[1].css(
-            'tr:nth-child(2) td::text').get().strip())
+        catch_rate = int(tables[1].css('tr:nth-child(2) td::text').get().strip())
 
         egg_groups = tables[2].css('tr:nth-child(1) td a::text').getall()
         egg_group1 = egg_groups[0]
@@ -63,14 +59,31 @@ class NationalSpider(scrapy.Spider):
             male = ''
 
         stats = tables[3].css('tbody')
-        hp = int(stats.css('tr:nth-child(1) .cell-num::text').get())
-        attack = int(stats.css('tr:nth-child(2) .cell-num::text').get())
-        defense = int(stats.css('tr:nth-child(3) .cell-num::text').get())
-        sp_atk = int(stats.css('tr:nth-child(4) .cell-num::text').get())
-        sp_def = int(stats.css('tr:nth-child(5) .cell-num::text').get())
-        speed = int(stats.css('tr:nth-child(6) .cell-num::text').get())
-        total = int(tables[3].css('tfoot .cell-total b::text').get())
+        hp = int(stats.css('tr:nth-child(1) .cell-num')[0].css('::text').get())
+        hp_min = int(stats.css('tr:nth-child(1) .cell-num')[1].css('::text').get())
+        hp_max = int(stats.css('tr:nth-child(1) .cell-num')[2].css('::text').get())
 
+        attack = int(stats.css('tr:nth-child(2) .cell-num')[0].css('::text').get())
+        attack_min = int(stats.css('tr:nth-child(2) .cell-num')[1].css('::text').get())
+        attack_max = int(stats.css('tr:nth-child(2) .cell-num')[2].css('::text').get())
+
+        defense = int(stats.css('tr:nth-child(3) .cell-num')[0].css('::text').get())
+        defense_min = int(stats.css('tr:nth-child(3) .cell-num')[1].css('::text').get())
+        defense_max = int(stats.css('tr:nth-child(3) .cell-num')[2].css('::text').get())
+
+        sp_atk = int(stats.css('tr:nth-child(4) .cell-num')[0].css('::text').get())
+        sp_atk_min = int(stats.css('tr:nth-child(4) .cell-num')[1].css('::text').get())
+        sp_atk_max = int(stats.css('tr:nth-child(4) .cell-num')[2].css('::text').get())
+
+        sp_def = int(stats.css('tr:nth-child(5) .cell-num')[0].css('::text').get())
+        sp_def_min = int(stats.css('tr:nth-child(5) .cell-num')[1].css('::text').get())
+        sp_def_max = int(stats.css('tr:nth-child(5) .cell-num')[2].css('::text').get())
+
+        speed = int(stats.css('tr:nth-child(6) .cell-num')[0].css('::text').get())
+        speed_min = int(stats.css('tr:nth-child(6) .cell-num')[1].css('::text').get())
+        speed_max = int(stats.css('tr:nth-child(6) .cell-num')[2].css('::text').get())
+
+        total = int(tables[3].css('tfoot .cell-total b::text').get())
         is_legendary = item['name'].lower() in LEGENDARY
 
         yield {
@@ -88,11 +101,23 @@ class NationalSpider(scrapy.Spider):
             'has_gender': has_gender,
             'male': male,
             'hp': hp,
+            'hp_min': hp_min,
+            'hp_max': hp_max,
             'attack': attack,
+            'attack_min': attack_min,
+            'attack_max': attack_max,
             'defense': defense,
+            'defense_min': defense_min,
+            'defense_max': defense_max,
             'sp_atk': sp_atk,
+            'sp_atk_min': sp_atk_min,
+            'sp_atk_max': sp_atk_max,
             'sp_def': sp_def,
+            'sp_def_min': sp_def_min,
+            'sp_def_max': sp_def_max,
             'speed': speed,
+            'speed_min': speed_min,
+            'speed_max': speed_max,
             'total': total,
             'is_legendary': is_legendary,
         }
