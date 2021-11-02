@@ -83,7 +83,6 @@ class NationalSpider(scrapy.Spider):
         speed_min = int(stats.css('tr:nth-child(6) .cell-num')[1].css('::text').get())
         speed_max = int(stats.css('tr:nth-child(6) .cell-num')[2].css('::text').get())
 
-        total = int(tables[3].css('tfoot .cell-total b::text').get())
         is_legendary = item['name'].lower() in LEGENDARY
 
         yield {
@@ -118,6 +117,5 @@ class NationalSpider(scrapy.Spider):
             'speed': speed,
             'speed_min': speed_min,
             'speed_max': speed_max,
-            'total': total,
             'is_legendary': is_legendary,
         }

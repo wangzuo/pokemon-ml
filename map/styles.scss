@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  font-family: arial;
 }
 
 #map {
@@ -75,4 +76,13 @@ $centroid-size: 6px;
 
 .hidden {
   display: none !important;
+}
+
+.text {
+  display: block;
+  position: absolute;
+  font-size: 36px;
+  font-weight: bold;
+  color: #aaaaaa;
+  opacity: 0.5;
 }
